@@ -7,17 +7,19 @@ window.onload = function () {
 };
 
 function getTrendingMovies() {
-    fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`)
-        .then(res => res.json())
-        .then(data => displayMovies(data.results));
+    fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US`)
+        .then(response => response.json())
+        .then(data => displayMovies(data.results))
+        .catch(error => console.log("Error:", error));
 }
 
 function searchMovie() {
     const query = document.getElementById("search").value;
 
-    fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`)
-        .then(res => res.json())
-        .then(data => displayMovies(data.results));
+    fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en-US`)
+        .then(response => response.json())
+        .then(data => displayMovies(data.results))
+        .catch(error => console.log("Error:", error));
 }
 
 function displayMovies(movies) {
